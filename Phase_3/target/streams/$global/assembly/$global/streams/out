@@ -4,7 +4,7 @@
 [0m[[0minfo[0m] [0mMerging files...[0m
 [0m[[33mwarn[0m] [0mMerging 'META-INF/MANIFEST.MF' with strategy 'discard'[0m
 [0m[[33mwarn[0m] [0mStrategy 'discard' was applied to a file[0m
-[0m[[0minfo[0m] [0mSHA-1: 1852b8636f53179bc3680b45d9690ee634b63c38[0m
+[0m[[0minfo[0m] [0mSHA-1: ad981484f157b794986a2ac29a6dc85458b9c832[0m
 [0m[[0minfo[0m] [0mPackaging /home/tejakunderu/Academics/DDS_Project/Phase_3/target/scala-2.11/CSE512-Hotspot-Analysis-Template-assembly-0.1.0.jar ...[0m
 [0m[[0mdebug[0m] [0mInput file mappings:[0m
 [0m[[0mdebug[0m] [0m	cse512/Entrance$.class[0m
@@ -19,6 +19,8 @@
 [0m[[0mdebug[0m] [0m	  /home/tejakunderu/Academics/DDS_Project/Phase_3/target/streams/$global/assemblyOption/$global/streams/assembly/5e3c52a5571633eea49fa02ae36d3b34aaa560a7_dir/cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$2.class[0m
 [0m[[0mdebug[0m] [0m	cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/tejakunderu/Academics/DDS_Project/Phase_3/target/streams/$global/assemblyOption/$global/streams/assembly/5e3c52a5571633eea49fa02ae36d3b34aaa560a7_dir/cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$3.class[0m
+[0m[[0mdebug[0m] [0m	cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$4$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/tejakunderu/Academics/DDS_Project/Phase_3/target/streams/$global/assemblyOption/$global/streams/assembly/5e3c52a5571633eea49fa02ae36d3b34aaa560a7_dir/cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$4$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/tejakunderu/Academics/DDS_Project/Phase_3/target/streams/$global/assemblyOption/$global/streams/assembly/5e3c52a5571633eea49fa02ae36d3b34aaa560a7_dir/cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$4.class[0m
 [0m[[0mdebug[0m] [0m	cse512/HotcellAnalysis$$anonfun$runHotcellAnalysis$5.class[0m

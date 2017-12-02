@@ -57,7 +57,11 @@ object HotcellUtils {
 
   def updateCube (x: Int, y: Int, z: Int): Int =
   {
-    hotcellCube(x)(y)(z) = hotcellCube(x)(y)(z) + 1
+    try {
+      hotcellCube(x)(y)(z) = hotcellCube(x)(y)(z) + 1
+    } catch {
+      case e: Exception => return 0
+    }
     return 0
   }
 

@@ -1,7 +1,7 @@
 package cse512
 
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import org.apache.spark.sql.functions.udf
 import org.apache.spark.sql.functions._
 
@@ -49,17 +49,20 @@ def runHotcellAnalysis(spark: SparkSession, pointPath: String): DataFrame =
   val numZ = maxZ - minZ + 1
   HotcellUtils.initializeCube(numX, numY, numZ)
 
-  spark.udf.register("UpdateCube",(x: Int, y: Int, z: Int)=>
-    HotcellUtils.updateCube(
-      x - Math.floor(minX).toInt,
-      y - Math.floor(minY).toInt,
-      z - minZ
-    ))
-  var temp = spark.sql("select UpdateCube(x, y, z) from pickupInfo where " +
-    "x >= " + minX + " and x <= " + maxX +
-    " and y >= " + minY + " and y <= " + maxY +
-    " and z >= " + minZ + " and z <= " + maxZ)
+  var temp = spark.sql("select * from pickupInfo where " +
+    "x >= " + minX.toString + " and x <= " + maxX.toString +
+    " and y >= " + minY.toString + " and y <= " + maxY.toString +
+    " and z >= " + minZ.toString + " and z <= " + maxZ.toString).persist()
   temp.show()
+  temp.createOrReplaceTempView("pickupInfo")
+
+  temp.foreachPartition(part => part.foreach(row =>
+    HotcellUtils.updateCube(
+      row.getInt(0) - Math.floor(minX).toInt,
+      row.getInt(1) - Math.floor(minY).toInt,
+      row.getInt(2) - minZ
+    )
+  ))
 
   val mean = HotcellUtils.getMean(numX, numY, numZ, numCells)
   val variance = HotcellUtils.getVariance(numX, numY, numZ, numCells, mean)
@@ -76,13 +79,14 @@ def runHotcellAnalysis(spark: SparkSession, pointPath: String): DataFrame =
       mean,
       variance
     ))
-  val gVals = spark.sql("select x, y, z, GetGVal(x, y, z) as gVal from (select distinct * from pickupInfo) order by gVal desc");
+  val gVals = spark.sql("select x, y, z, GetGVal(x, y, z) as gVal from (select distinct * from pickupInfo) order by gVal desc").persist()
   gVals.show()
   gVals.createOrReplaceTempView("gValues")
 
-  val result = spark.sql("select x, y, z from gValues limit 50")
+  val result = spark.sql("select x, y, z from gValues limit 50").persist()
   result.show()
 
   return result
 }
 }
+
